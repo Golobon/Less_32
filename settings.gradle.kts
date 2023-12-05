@@ -16,3 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "Less_32"
 include(":app")
 include(":less_33")
+include(":less_34")

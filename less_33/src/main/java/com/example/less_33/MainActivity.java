@@ -35,13 +35,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onPause() {
+        super.onPause();
         saveText();
     }
 
     private void saveText() {
-        sP = getSharedPreferences("MyPref", MODE_PRIVATE);
+        sP = getSharedPreferences("Save", MODE_PRIVATE);
         SharedPreferences.Editor editor = sP.edit();
         editor.putString(SAVED_TEXT, eT.getText().toString());
         editor.commit();
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadText() {
-        sP = getSharedPreferences("MyPref", MODE_PRIVATE);
+        sP = getSharedPreferences("Save", MODE_PRIVATE);
         String loadRes = sP.getString(SAVED_TEXT, "");
         eT.setText(loadRes);
         Toast.makeText(this, "Loaded", Toast.LENGTH_LONG).show();
