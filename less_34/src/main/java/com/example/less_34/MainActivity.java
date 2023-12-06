@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText eTName, eTMail;
-    Button butAdd, butRead, but_Clear;
+    EditText eTName, eTMail, etId;
+    Button butAdd, butRead, butClear, butUpd, butDel;
     DBHelper dbHelper;
 
     @Override
@@ -23,13 +23,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         eTName = findViewById(R.id.e_t_name);
         eTMail = findViewById(R.id.e_t_mail);
+        etId = findViewById(R.id.e_t_id);
 
         butAdd = findViewById(R.id.but_add);
         butAdd.setOnClickListener(this);
         butRead = findViewById(R.id.but_read);
         butRead.setOnClickListener(this);
-        but_Clear = findViewById(R.id.but_clear);
-        but_Clear.setOnClickListener(this);
+        butClear = findViewById(R.id.but_clear);
+        butClear.setOnClickListener(this);
+        butUpd = findViewById(R.id.but_upd);
+        butUpd.setOnClickListener(this);
+        butDel = findViewById(R.id.but_del);
+        butDel.setOnClickListener(this);
 
         dbHelper = new DBHelper(this);
 
@@ -39,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         String name = eTName.getText().toString();
         String mail = eTMail.getText().toString();
+        String id = etId.getText().toString();
 
         SQLiteDatabase sQLDB = dbHelper.getWritableDatabase();
 
@@ -66,9 +72,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             cursor.close();
         }
 
-        else if (v.equals(but_Clear)) {
+        else if (v.equals(butClear)) {
             sQLDB.delete(DBHelper.TABLE_CONTACTS, null, null);
             dbHelper.close();
+        }
+
+        else if (v.equals(butUpd)) {
+            if (!id.equalsIgnoreCase("")) {
+                contentValues.put(DBHelper.KEY_NAME, name);
+                contentValues.put(DBHelper.KEY_MAIL, mail);
+                int updCount = sQLDB.update(DBHelper.TABLE_CONTACTS, contentValues, DBHelper.KEY_ID + "= ?" , new String[]{id});
+                Log.d("mLog", "updates log count = " + updCount);
+            }
+        }
+
+        else if (v.equals(butDel)) {
+            if (!id.equalsIgnoreCase("")) {
+                int delCount = sQLDB.delete(DBHelper.TABLE_CONTACTS, DBHelper.KEY_ID + "=" + id, null);
+                Log.d("mLog", "deleted rows count = " + delCount);
+            }
         }
     }
 }
