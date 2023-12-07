@@ -81,14 +81,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (!id.equalsIgnoreCase("")) {
                 contentValues.put(DBHelper.KEY_NAME, name);
                 contentValues.put(DBHelper.KEY_MAIL, mail);
-                int updCount = sQLDB.update(DBHelper.TABLE_CONTACTS, contentValues, DBHelper.KEY_ID + "= ?" , new String[]{id});
+                int updCount = sQLDB.update(DBHelper.TABLE_CONTACTS, contentValues, DBHelper.KEY_NAME + "= ?" , new String[]{name});
                 Log.d("mLog", "updates log count = " + updCount);
             }
         }
 
         else if (v.equals(butDel)) {
             if (!id.equalsIgnoreCase("")) {
-                int delCount = sQLDB.delete(DBHelper.TABLE_CONTACTS, DBHelper.KEY_ID + "=" + id, null);
+                int delCount = sQLDB.delete(DBHelper.TABLE_CONTACTS, DBHelper.KEY_NAME + "= ?" , new String[]{name});
                 Log.d("mLog", "deleted rows count = " + delCount);
             }
         }
