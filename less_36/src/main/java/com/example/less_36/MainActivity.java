@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     final String LOG_TAG = "myLogs";
     String[] names = {"Китай", "США", "Бразилия", "Россия", "Япония",
             "Германия", "Египет", "Италия", "Франция", "Канада"};
-    int[] people = {1400, 311, 195, 142, 128, 82, 80, 60, 66, 35};
+    Integer[] people = {1400, 311, 195, 142, 128, 82, 80, 60, 66, 35};
     String[] region = {"Азия", "Америка", "Америка", "Европа", "Азия",
             "Европа", "Африка", "Европа", "Европа", "Америка"};
     Button butAllData, butFunc, butDemosMore, butDemosRegion, butDemosRegionMore, butSort;
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             c = db.query("myTable", columns, null, null, null, null, null);
         } else if (v.equals(butDemosMore)) {
             Log.d(LOG_TAG, "--- Население больше " + sPeople + " ---");
-            selection = "people > ?";
+            selection = "CAST(people AS INTEGER) > ?";
             selectionArgs = new String[]{ sPeople };
             c = db.query("myTable", null, selection, selectionArgs, null, null, null);
         } else if (v.equals(butDemosRegion)) {
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 orderBy = "name";
             } else if (rGroupSort.getCheckedRadioButtonId() == radioDemos.getId()) {
                 Log.d(LOG_TAG, "--- Сортировка по населению ---");
-                orderBy = "people)";
+                orderBy = "CAST(people AS INTEGER) DESC";
             } else if (rGroupSort.getCheckedRadioButtonId() == radioRegion.getId()) {
                 Log.d(LOG_TAG, "--- Сортировка по региону ---");
                 orderBy = "region";
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             db.execSQL("create table myTable (" +
                     " id integer primary key autoincrement," +
                     "name text," +
-                    "people text," +
+                    "people INTEGER," +
                     "region text" + ");");
         }
 
