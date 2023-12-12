@@ -163,10 +163,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL("create table myTable (" +
-                    " id integer primary key autoincrement," +
-                    "name TEXT," +
-                    "people INTEGER," +
-                    "region TEXT" + ");");
+                    "id integer primary key autoincrement," +
+                    "name text, " +
+                    "people integer, " +
+                    "region text" + ");");
         }
 
         @Override

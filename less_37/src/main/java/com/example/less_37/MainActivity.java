@@ -3,6 +3,7 @@ package com.example.less_37;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor;
 
         Log.d(LOG_TAG, "---Table position---");
-        cursor = sqLiteDatabase.query("position", null, null, null, null, null, null);
+        cursor = sqLiteDatabase.query("position", null, null, null, null, null, "salary DESC");
         logCursor(cursor);
         cursor.close();
         Log.d(LOG_TAG, "--- ---");
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         sqLiteDatabase.close();
     }
+    @SuppressLint("Range")
     void logCursor (Cursor cursor) {
         if (cursor != null) {
             if (cursor.moveToFirst()) {
