@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     final String LOG_TAG = "myLogs";
     String[] names = {"Китай", "США", "Бразилия", "Россия", "Япония",
             "Германия", "Египет", "Италия", "Франция", "Канада"};
-    Integer[] people = {1400, 311, 195, 142, 128, 82, 80, 60, 66, 35};
+    int[] people = {1400, 311, 195, 142, 128, 82, 80, 60, 66, 35};
     String[] region = {"Азия", "Америка", "Америка", "Европа", "Азия",
             "Европа", "Африка", "Европа", "Европа", "Америка"};
     Button butAllData, butFunc, butDemosMore, butDemosRegion, butDemosRegionMore, butSort;
@@ -81,8 +81,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
             c.close();
             dbHelper.close();
-            onClick(butAllData);
         }
+        onClick(butAllData);
     }
 
     @Override
@@ -107,12 +107,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             c = db.query("myTable", null, null, null, null, null, null);
         } else if (v.equals(butFunc)) {
             Log.d(LOG_TAG, "--- Функция " + sFunc + " ---");
-            columns = new String[]{ sFunc };
+            columns = new String[]{sFunc};
             c = db.query("myTable", columns, null, null, null, null, null);
         } else if (v.equals(butDemosMore)) {
             Log.d(LOG_TAG, "--- Население больше " + sPeople + " ---");
             selection = "CAST(people AS INTEGER) > ?";
-            selectionArgs = new String[]{ sPeople };
+            selectionArgs = new String[]{sPeople};
             c = db.query("myTable", null, selection, selectionArgs, null, null, null);
         } else if (v.equals(butDemosRegion)) {
             Log.d(LOG_TAG, "--- Население по региону ---");
@@ -164,9 +164,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         public void onCreate(SQLiteDatabase db) {
             db.execSQL("create table myTable (" +
                     " id integer primary key autoincrement," +
-                    "name text," +
+                    "name TEXT," +
                     "people INTEGER," +
-                    "region text" + ");");
+                    "region TEXT" + ");");
         }
 
         @Override
