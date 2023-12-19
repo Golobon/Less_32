@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,11 +20,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         lvMain = findViewById(R.id.lv_main);
         //Устанавливаем режим выбора списка
-        lvMain.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        lvMain.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
         //Создаем массив, используя массив из файла ресурсов
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 this, R.array.names,
-                android.R.layout.simple_list_item_single_choice);
+                android.R.layout.simple_list_item_multiple_choice);
         lvMain.setAdapter(adapter);
 
         Button button = findViewById(R.id.but);
@@ -34,6 +35,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Log.d("MyLogs", "checked: " + names[lvMain.getCheckedItemPosition()]);
+        Log.d("MyLogs", "checked: ");
+
+        SparseBooleanArray sbArray = lvMain.getCheckedItemPositions();
+        for (int i = 0; i < sbArray.size(); i++) {
+            int key = sbArray.keyAt(i);
+            if (sbArray.get(key)) Log.d("MyLogs", names[key]);
+        }
     }
 }
