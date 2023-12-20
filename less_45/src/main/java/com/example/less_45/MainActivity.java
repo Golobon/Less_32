@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         SimpleExpandableListAdapter adapter = new SimpleExpandableListAdapter(
                 this, groupData,
                 android.R.layout.simple_expandable_list_item_1, groupFrom,
-                groupTo, childData, android.R.layout.simple_expandable_list_item_1,
+                groupTo, childData, android.R.layout.simple_list_item_1,
                 childFrom, childTo
         );
 
