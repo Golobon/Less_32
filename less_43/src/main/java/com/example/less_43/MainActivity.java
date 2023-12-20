@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Log.d("MyLogs", "checked: ");
+        Log.d("MyLogs", "checked:");
 
         SparseBooleanArray sbArray = lvMain.getCheckedItemPositions();
         for (int i = 0; i < sbArray.size(); i++) {
