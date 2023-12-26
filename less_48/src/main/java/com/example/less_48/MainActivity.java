@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             if (v.getId() == R.id.tvValue) {
                 int i = Integer.parseInt(text);
                 if (i < 0) v.setTextColor(Color.RED);
-                else if (i > 0) v.setTextColor(Color.GREEN);
+                else if (i > 0) v.setTextColor(Color.BLUE);
                 else v.setTextColor(Color.BLACK);
             }
         }
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         public void setViewImage(ImageView v, int value) {
             super.setViewImage(v, value);
             if (value == negative) v.setBackgroundColor(Color.RED);
-            else if (value == positive) v.setBackgroundColor(Color.GREEN);
+            else if (value == positive) v.setBackgroundColor(Color.BLUE);
             else v.setBackgroundColor(0);
         }
     }
