@@ -46,6 +46,5 @@ public class MainActivity extends AppCompatActivity {
                 from, to);
         lvSimple = findViewById(R.id.lv_simple);
         lvSimple.setAdapter(sAdapter);
-
     }
 }
