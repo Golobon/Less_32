@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                          int childLayout, String[] childFrom, int[] childTo) {
             super(context, cursor,
                     groupLayout, groupFrom, groupTo,
-                    childLayout, groupFrom, groupTo);
+                    childLayout, childFrom, childTo);
         }
         @Override
         protected Cursor getChildrenCursor(Cursor groupCursor) {

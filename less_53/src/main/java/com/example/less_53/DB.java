@@ -11,10 +11,8 @@ public class DB {
     private static final int DB_VERSION = 1;
 
     private static final String COMPANY_TABLE = "company";
-
     public static final String COMPANY_COLUMN_ID = "_id";
     public static final String COMPANY_COLUMN_NAME = "name";
-
     private static final String COMPANY_TABLE_CREATE =
             "create table " + COMPANY_TABLE +
             "(" + COMPANY_COLUMN_ID + " integer primary key, " +
@@ -24,7 +22,6 @@ public class DB {
     public static final String PHONE_COLUMN_ID = "_id";
     public static final String PHONE_COLUMN_NAME = "name";
     public static final String PHONE_COLUMN_COMPANY = "company";
-
     private static final String PHONE_TABLE_CREATE =
             "create table " + PHONE_TABLE +
                     "(" + PHONE_COLUMN_ID + " integer primary key autoincrement," +
