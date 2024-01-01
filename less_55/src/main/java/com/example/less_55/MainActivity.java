@@ -11,20 +11,16 @@ import android.widget.HeaderViewListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 public class MainActivity extends AppCompatActivity {
     final String LOG_TAG = "meLogs";
     String[] data = {"one", "two", "three", "four", "five",};
     ListView lvMain;
     ArrayAdapter<String> adapter;
-
     View header1;
     View header2;
     View footer1;
     View footer2;
     Button b;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
