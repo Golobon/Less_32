@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
             myDay = i2;
             tvDate.setText("Date is " +
                     myYear + " year " +
-                    myMonth + " month " +
+                    (myMonth + 1) + " month " +
                     myDay + " day ");
         }
     };
