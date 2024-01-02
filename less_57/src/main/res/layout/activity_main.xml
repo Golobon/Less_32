@@ -7,8 +7,8 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/spinner"
+    <GridView
+        android:id="@+id/gv_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="32dp" />
