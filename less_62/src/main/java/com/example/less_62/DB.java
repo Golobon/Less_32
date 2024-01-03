@@ -56,7 +56,7 @@ public class DB {
             db.execSQL(DB_TABLE_CREATE);
 
             ContentValues cv = new ContentValues();
-            for (int i = 0; i < 5; i++) {
+            for (int i = 1; i < 5; i++) {
                 cv.put(COLUMN_ID, i);
                 cv.put(COLUMN_TXT, "sometext " + i);
                 db.insert(DB_TABLE, null, cv);

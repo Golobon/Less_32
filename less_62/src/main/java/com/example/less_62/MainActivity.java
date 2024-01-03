@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     int cnt = 0;
     DB db;
     Cursor cursor;
-    String[] data = {"one", "two", "three", "four", "five"};
+    String[] data = {"one", "two", "three", "four"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPrepareDialog(int id, Dialog dialog) {
         AlertDialog aDialog = (AlertDialog) dialog;
         ListAdapter lAdapter = aDialog.getListView().getAdapter();
-        switch (id) {
+         switch (id) {
             case DIALOG_ITEMS:
             case DIALOG_ADAPTER: {
                 if (lAdapter instanceof BaseAdapter) {
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
     void changeCount() {
         cnt++;
-        data[4] = String.valueOf(cnt);
+        data[3] = String.valueOf(cnt);
         db.changeRec(4, String.valueOf(cnt));
         cursor.requery();
     }
