@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Less_62</string>
+    <string name="hello_worls">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="items">Items</string>
+    <string name="cursor">Cursor</string>
+    <string name="ok">OK</string>
+</resources>
