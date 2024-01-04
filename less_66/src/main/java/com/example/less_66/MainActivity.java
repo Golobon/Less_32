@@ -35,9 +35,15 @@ public class MainActivity extends AppCompatActivity {
         showDialog(DIALOG);
         Handler h = new Handler();
 
-        h.postDelayed(this::method1, 2000);
+        h.postDelayed(new Runnable() {
+            @Override
+            public void run() { method1(); } }, 2000);
+
         h.postDelayed(this::method2, 4000);
     };
+
+    AlertDialog.OnClickListener adOnClick = (dialog, which) -> Log.d(LOG_TAG, "Ok pressed");
+
     @Override
     protected Dialog onCreateDialog(int id) {
         if (id == DIALOG) {
@@ -45,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             AlertDialog.Builder adb = new AlertDialog.Builder(this);
             adb.setTitle("Title");
             adb.setMessage("Message");
-            adb.setPositiveButton("Ok", null);
+            adb.setPositiveButton("Ok", adOnClick);
             dialog = adb.create();
 
             dialog.setOnShowListener(dialog -> Log.d(LOG_TAG, "Show"));
