@@ -55,11 +55,15 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onCreateDialog(id);
     }
-    void method1(){
+    void method1() {
+        dialog.dismiss();
+        dismissDialog(DIALOG);
+        removeDialog(DIALOG);
         dialog.hide();
     }
-    void method2(){
-
+    void method2() {
+        dialog.show();
+        showDialog(DIALOG);
     }
 
 }
