@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateDialog(id);
     }
     void method1() {
+        dialog.cancel();
         dialog.dismiss();
         dismissDialog(DIALOG);
         removeDialog(DIALOG);
