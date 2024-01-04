@@ -8,15 +8,9 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/but_add"
+        android:id="@+id/but_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/add" />
-
-    <Button
-        android:id="@+id/but_remove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/remove" />
+        android:text="@string/dialog" />
 
 </LinearLayout>
