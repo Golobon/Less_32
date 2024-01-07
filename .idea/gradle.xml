@@ -46,6 +46,7 @@
             <option value="$PROJECT_DIR$/less_66_AlertDialog" />
             <option value="$PROJECT_DIR$/less_67_AlertDialog" />
             <option value="$PROJECT_DIR$/less_68_Parcel" />
+            <option value="$PROJECT_DIR$/less_69_parcelable" />
           </set>
         </option>
       </GradleProjectSettings>

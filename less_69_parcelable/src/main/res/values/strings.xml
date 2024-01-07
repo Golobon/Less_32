@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Less_68_Parcel</string>
+    <string name="helllo_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="main">MainActivity</string>
+    <string name="second">SecondActivity</string>
+    <string name="send">Send</string>
+</resources>
