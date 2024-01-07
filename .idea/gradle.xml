@@ -47,6 +47,7 @@
             <option value="$PROJECT_DIR$/less_67_AlertDialog" />
             <option value="$PROJECT_DIR$/less_68_Parcel" />
             <option value="$PROJECT_DIR$/less_69_parcelable" />
+            <option value="$PROJECT_DIR$/less_70_activity_onsaveinstancestate" />
           </set>
         </option>
       </GradleProjectSettings>
