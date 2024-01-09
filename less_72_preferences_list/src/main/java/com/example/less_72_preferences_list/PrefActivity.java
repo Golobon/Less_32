@@ -1,23 +1,12 @@
 package com.example.less_72_preferences_list;
 
 import android.os.Bundle;
-import android.preference.PreferenceFragment;
+import android.preference.PreferenceActivity;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class PrefActivity extends AppCompatActivity {
-
+public class PrefActivity extends PreferenceActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getFragmentManager().beginTransaction().replace(android.R.id.content, new MyPreferenceFragment()).commit();
-    }
-    public static class MyPreferenceFragment extends PreferenceFragment {
-        @Override
-        public void onCreate(final Bundle savedInstanceState)
-        {
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref);
-        }
+        addPreferencesFromResource(R.xml.pref);
     }
 }
