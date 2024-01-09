@@ -49,6 +49,7 @@
             <option value="$PROJECT_DIR$/less_69_Parcelable" />
             <option value="$PROJECT_DIR$/less_70_Activity_onsaveinstancestate" />
             <option value="$PROJECT_DIR$/less_71_preferences" />
+            <option value="$PROJECT_DIR$/less_72_preferences_list" />
           </set>
         </option>
       </GradleProjectSettings>

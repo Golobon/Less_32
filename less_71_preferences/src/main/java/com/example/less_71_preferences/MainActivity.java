@@ -84,11 +84,12 @@ public class MainActivity extends AppCompatActivity {
         tv.setText(text);
         super.onResume();
     }
+    //Чтобы onCreateOptionsMenu сработало, нужно в Theme убрать
+    // после "DayNight" убрать ".NoActionBar"
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
         MenuItem mi = menu.add(0, 1, 0, "Preferences");
         mi.setIntent(new Intent(this, PrefActivity.class));
-        return true;
+        return super.onCreateOptionsMenu(menu);
     }
 }
