@@ -19,18 +19,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         eT = findViewById(R.id.editText);
-        findViewById(R.id.but_save).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveText();
-            }
-        });
-        findViewById(R.id.but_load).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                loadText();
-            }
-        });
+        findViewById(R.id.but_save).setOnClickListener(view -> saveText());
+        findViewById(R.id.but_load).setOnClickListener(view -> loadText());
         loadText();
     }
 
