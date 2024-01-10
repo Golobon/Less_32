@@ -50,6 +50,7 @@
             <option value="$PROJECT_DIR$/less_70_Activity_onsaveinstancestate" />
             <option value="$PROJECT_DIR$/less_71_preferences" />
             <option value="$PROJECT_DIR$/less_72_preferences_list" />
+            <option value="$PROJECT_DIR$/less_73_Preferences_setEnabled" />
           </set>
         </option>
       </GradleProjectSettings>
