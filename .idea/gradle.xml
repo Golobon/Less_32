@@ -47,11 +47,12 @@
             <option value="$PROJECT_DIR$/less_67_AlertDialog" />
             <option value="$PROJECT_DIR$/less_68_Parcel" />
             <option value="$PROJECT_DIR$/less_69_Parcelable" />
-            <option value="$PROJECT_DIR$/less_70_Activity_onsaveinstancestate" />
+            <option value="$PROJECT_DIR$/less_70_activity_onsaveinstancestate" />
             <option value="$PROJECT_DIR$/less_71_preferences" />
             <option value="$PROJECT_DIR$/less_72_preferences_list" />
-            <option value="$PROJECT_DIR$/less_73_Preferences_setEnabled" />
+            <option value="$PROJECT_DIR$/less_73_preferences_setEnabled" />
             <option value="$PROJECT_DIR$/less_74_preferences_settings_in_main" />
+            <option value="$PROJECT_DIR$/less_75_read_write_file" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -48,7 +48,7 @@ public class PrefActivity extends PreferenceActivity {
         screen.setTitle("Screen");
         screen.setSummary("Description of screen");
 
-        final CheckBoxPreference chb3 = new CheckBoxPreference(this);
+        CheckBoxPreference chb3 = new CheckBoxPreference(this);
         chb3.setKey("chb3");
         chb3.setTitle("CheckBox 3");
         chb3.setSummary("Description of CheckBox 3");
@@ -69,7 +69,7 @@ public class PrefActivity extends PreferenceActivity {
 
         categ1.addPreference(chb4);
 
-        final PreferenceCategory categ2 = new PreferenceCategory(this);
+        PreferenceCategory categ2 = new PreferenceCategory(this);
         categ2.setKey("categ2");
         categ2.setTitle("Category 2");
         categ2.setSummary("Description of Category 2");
