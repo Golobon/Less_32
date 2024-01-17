@@ -55,6 +55,7 @@
             <option value="$PROJECT_DIR$/less_75_read_write_file" />
             <option value="$PROJECT_DIR$/less_76_tabHost" />
             <option value="$PROJECT_DIR$/less_77_tabhost" />
+            <option value="$PROJECT_DIR$/less_78_tabcontentfactory" />
           </set>
         </option>
       </GradleProjectSettings>
