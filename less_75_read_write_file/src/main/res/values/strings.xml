@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Less_75</string>
+    <string name="write_file">Записать файл</string>
+    <string name="read_file">Прочитать_файл</string>
+    <string name="write_file_sd">Записать_файл_на_sd</string>
+    <string name="read_file_sd">Прочесть_файл_с_sd</string>
+</resources>

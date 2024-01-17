@@ -1,0 +1,7 @@
+<resources>
+
+    <string name="app_name">Less_77_tabHost</string>
+    <string name="text_activity_1">Это первое активити</string>
+    <string name="text_activity_2">Это второе активити</string>
+
+</resources>
