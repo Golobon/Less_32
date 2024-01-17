@@ -53,7 +53,8 @@
             <option value="$PROJECT_DIR$/less_73_preferences_setEnabled" />
             <option value="$PROJECT_DIR$/less_74_preferences_settings_in_main" />
             <option value="$PROJECT_DIR$/less_75_read_write_file" />
-            <option value="$PROJECT_DIR$/less_76" />
+            <option value="$PROJECT_DIR$/less_76_tabHost" />
+            <option value="$PROJECT_DIR$/less_77_tabhost" />
           </set>
         </option>
       </GradleProjectSettings>
