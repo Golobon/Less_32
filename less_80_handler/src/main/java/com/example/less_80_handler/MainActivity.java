@@ -1,9 +1,12 @@
 package com.example.less_80_handler;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -26,14 +29,26 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tvInfo = findViewById(R.id.tv_info);
 
+        handler = new Handler() {
+            @Override
+            public void handleMessage(@NonNull Message msg) {
+                tvInfo.setText("Закачано файлов: " + msg.what);
+                if (msg.what == 10) {
+                    btnStart.setEnabled(true);
+                }
+            }
+        };
+
         btnStart = findViewById(R.id.btn_start);
+
         btnTest = findViewById(R.id.btn_test);
 
         btnStart.setOnClickListener(v -> {
+            btnStart.setEnabled(false);
             new Thread(() -> {
                 for (int i = 1; i < 11; i++) {
                     downloadFile();
-                    tvInfo.setText("Закачано файлов: " + i);
+                    handler.sendEmptyMessage(i);
                     Log.d(LOG_TAG, "Закачано файлов: " + i);
                 }
             }).start();
