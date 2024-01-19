@@ -57,6 +57,7 @@
             <option value="$PROJECT_DIR$/less_77_tabhost" />
             <option value="$PROJECT_DIR$/less_78_tabcontentfactory" />
             <option value="$PROJECT_DIR$/less_79_xmlpullparser" />
+            <option value="$PROJECT_DIR$/less_80_handler" />
           </set>
         </option>
       </GradleProjectSettings>
