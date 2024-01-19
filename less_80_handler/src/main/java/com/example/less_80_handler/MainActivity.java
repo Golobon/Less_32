@@ -14,11 +14,12 @@ import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
     final String LOG_TAG = "myLogs";
-    
+
     Handler handler;
     TextView tvInfo;
     Button btnStart;
     Button btnTest;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +30,14 @@ public class MainActivity extends AppCompatActivity {
         btnTest = findViewById(R.id.btn_test);
 
         btnStart.setOnClickListener(v -> {
-            for (int i = 1; i < 11; i++) {
-                downloadFile();
-                tvInfo.setText("Закачано файлов: " + i);
-                Log.d(LOG_TAG, "Закачано файлов: " + i); } });
+            new Thread(() -> {
+                for (int i = 1; i < 11; i++) {
+                    downloadFile();
+                    tvInfo.setText("Закачано файлов: " + i);
+                    Log.d(LOG_TAG, "Закачано файлов: " + i);
+                }
+            }).start();
+        });
 
         btnTest.setOnClickListener(v -> Log.d(LOG_TAG, "test"));
     }
@@ -40,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private void downloadFile() {
         try {
             TimeUnit.SECONDS.sleep(1);
-        } catch (Exception e) { }
+        } catch (Exception e) {
+        }
     }
 }
