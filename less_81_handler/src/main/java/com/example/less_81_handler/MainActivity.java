@@ -3,6 +3,7 @@ package com.example.less_81_handler;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     TextView tvStatus;
     ProgressBar pbConnect;
     Button btnConnect;
+    @SuppressLint("HandlerLeak")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,7 +32,9 @@ public class MainActivity extends AppCompatActivity {
         tvStatus = findViewById(R.id.tv_status);
         pbConnect = findViewById(R.id.pb_connect);
         btnConnect = findViewById(R.id.btn_connect);
+
         handler = new Handler() {
+            @SuppressLint({"HandlerLeak", "SetTextI18n"})
             @Override
             public void handleMessage(@NonNull Message msg) {
                 switch (msg.what) {
@@ -50,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
+
         handler.sendEmptyMessage(STATUS_NONE);
 
         btnConnect.setOnClickListener(v -> new Thread(() -> {
@@ -59,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 handler.sendEmptyMessage(STATUS_CONNECTED);
                 TimeUnit.SECONDS.sleep(3);
                 handler.sendEmptyMessage(STATUS_NONE);
-            } catch (InterruptedException e) { }
+            } catch (InterruptedException ignored) { }
         }).start());
     }
 }
