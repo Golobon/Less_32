@@ -59,6 +59,7 @@
             <option value="$PROJECT_DIR$/less_79_xmlpullparser" />
             <option value="$PROJECT_DIR$/less_80_handler" />
             <option value="$PROJECT_DIR$/less_81_handler" />
+            <option value="$PROJECT_DIR$/less_82_handler" />
           </set>
         </option>
       </GradleProjectSettings>
