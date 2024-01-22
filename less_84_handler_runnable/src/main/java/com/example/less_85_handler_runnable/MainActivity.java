@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 tvInfo.setVisibility(View.GONE);
                 handler.removeCallbacks(showInfo);
-                pbCount.setProgress(0);
             }
         });
 
