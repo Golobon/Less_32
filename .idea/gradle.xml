@@ -60,6 +60,7 @@
             <option value="$PROJECT_DIR$/less_80_handler" />
             <option value="$PROJECT_DIR$/less_81_handler" />
             <option value="$PROJECT_DIR$/less_82_handler" />
+            <option value="$PROJECT_DIR$/less_83_handler_callback" />
           </set>
         </option>
       </GradleProjectSettings>
