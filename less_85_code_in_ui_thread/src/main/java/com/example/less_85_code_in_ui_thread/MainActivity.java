@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
             }
         }).start();
     }
-
     Runnable runn1 = () -> tvInfo.setText("runn1");
     Runnable runn2 = () -> tvInfo.setText("runn2");
     Runnable runn3 = () -> tvInfo.setText("runn3");

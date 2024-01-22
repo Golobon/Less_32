@@ -45,8 +45,8 @@
             <option value="$PROJECT_DIR$/less_65_AlertDialog" />
             <option value="$PROJECT_DIR$/less_66_AlertDialog" />
             <option value="$PROJECT_DIR$/less_67_AlertDialog" />
-            <option value="$PROJECT_DIR$/less_68_Parcel" />
-            <option value="$PROJECT_DIR$/less_69_Parcelable" />
+            <option value="$PROJECT_DIR$/less_68_parcel" />
+            <option value="$PROJECT_DIR$/less_69_parcelable" />
             <option value="$PROJECT_DIR$/less_70_activity_onsaveinstancestate" />
             <option value="$PROJECT_DIR$/less_71_preferences" />
             <option value="$PROJECT_DIR$/less_72_preferences_list" />
@@ -63,6 +63,7 @@
             <option value="$PROJECT_DIR$/less_83_handler_callback" />
             <option value="$PROJECT_DIR$/less_84_handler_runnable" />
             <option value="$PROJECT_DIR$/less_85_code_in_ui_thread" />
+            <option value="$PROJECT_DIR$/less_86_asynctask" />
           </set>
         </option>
       </GradleProjectSettings>
