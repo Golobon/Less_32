@@ -1,4 +1,4 @@
-package com.example.less_86_asynctask;
+package com.example.less_87_asynctask_results;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,13 +18,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         tvInfo = findViewById(R.id.tv_info);
-        findViewById(R.id.btn_start).setOnClickListener(v -> {
+        findViewById(R.id.btn).setOnClickListener(v -> {
             mt = new MyTask();
-            mt.execute();
+            mt.execute("file_path_1", "file_path_2", "file_path_3", "file_path_4");
         });
     }
 
-    public class MyTask extends AsyncTask<Void, Void, Void> {
+    public class MyTask extends AsyncTask<String, Integer, Void> {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -32,12 +32,22 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        protected Void doInBackground(Void... params) {
+        protected Void doInBackground(String... urls) {
             try {
-                TimeUnit.SECONDS.sleep(2);
-            } catch (Exception ignore) {
-            }
+                int cnt = 0;
+                for (String url : urls) {
+                    downloadFile(url);
+                    publishProgress(++cnt);
+                }
+                TimeUnit.SECONDS.sleep(1);
+            } catch (Exception ignore) { }
             return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            tvInfo.setText("Downloaded " + values[0] + " files");
         }
 
         @Override
@@ -45,5 +55,9 @@ public class MainActivity extends AppCompatActivity {
             super.onPostExecute(result);
             tvInfo.setText("End");
         }
+    }
+
+    private void downloadFile(String url) throws InterruptedException {
+        TimeUnit.SECONDS.sleep(2);
     }
 }
