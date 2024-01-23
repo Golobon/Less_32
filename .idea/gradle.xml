@@ -65,6 +65,7 @@
             <option value="$PROJECT_DIR$/less_85_code_in_ui_thread" />
             <option value="$PROJECT_DIR$/less_86_asynctask" />
             <option value="$PROJECT_DIR$/less_87_asynctask_results" />
+            <option value="$PROJECT_DIR$/less_88_asynctask_get" />
           </set>
         </option>
       </GradleProjectSettings>
