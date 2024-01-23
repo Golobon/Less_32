@@ -68,6 +68,7 @@
             <option value="$PROJECT_DIR$/less_88_asynctask_get" />
             <option value="$PROJECT_DIR$/less_89_asynctask_cancel" />
             <option value="$PROJECT_DIR$/less_90_asynctask_status" />
+            <option value="$PROJECT_DIR$/less_91_asynctask_rotate_screen" />
           </set>
         </option>
       </GradleProjectSettings>
