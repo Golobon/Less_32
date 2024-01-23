@@ -66,6 +66,7 @@
             <option value="$PROJECT_DIR$/less_86_asynctask" />
             <option value="$PROJECT_DIR$/less_87_asynctask_results" />
             <option value="$PROJECT_DIR$/less_88_asynctask_get" />
+            <option value="$PROJECT_DIR$/less_89_asynctask_cancel" />
           </set>
         </option>
       </GradleProjectSettings>
