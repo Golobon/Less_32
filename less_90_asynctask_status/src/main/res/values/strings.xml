@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Less_90_asynctask_status</string>
+    <string name="start">Start</string>
+    <string name="status">Status</string>
+</resources>
