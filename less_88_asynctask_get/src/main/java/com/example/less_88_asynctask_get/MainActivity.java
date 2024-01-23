@@ -33,15 +33,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void showResult() {
         if (mt == null) return;
-        int result;
+        int result = -1;
 
         try {
             Log.d(LOG_TAG, "Try to get result");
-            result = mt.get();
+            result = mt.get(1, TimeUnit.SECONDS);
             Log.d(LOG_TAG, "get returns " + result);
             Toast.makeText(this, "get returns " + result, Toast.LENGTH_LONG).show();
 
-        } catch (Exception ignore) {
+        } catch (Exception e) {
+            Log.d(LOG_TAG,"get timeout, result " + result);
         }
     }
 
