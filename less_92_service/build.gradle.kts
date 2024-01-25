@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace = "com.example.less_92_service"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.less_92_service"
         minSdk = 26
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
