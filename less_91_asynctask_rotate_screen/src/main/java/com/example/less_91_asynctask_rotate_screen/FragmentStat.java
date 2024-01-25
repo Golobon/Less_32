@@ -63,6 +63,14 @@ public class FragmentStat extends Fragment {
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
             tv.setText("i = " + values[0]);
+            if (values[0] == 5) cancel(true);
+            Log.d(LOG_TAG, String.valueOf(isCancelled()));
+        }
+
+        @Override
+        protected void onCancelled() {
+            super.onCancelled();
+            Log.d(LOG_TAG, "Cancelled");
         }
     }
 }
