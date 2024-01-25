@@ -1,72 +1,68 @@
 package com.example.less_91_asynctask_rotate_screen;
 
 import android.util.Log;
-import android.widget.Button;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.view.View.OnClickListener;
 
 import java.util.concurrent.TimeUnit;
 
-public class ProgressFragment extends Fragment {
+public class FragmentStat extends Fragment {
     final String LOG_TAG = "myLogs";
-    int[] integers=null;
-    ProgressBar indicatorBar;
-    TextView statusView;
+    TextView tv;
+    MyTask mt;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRetainInstance(true);
+        Log.d(LOG_TAG, "create FragmentStat: " + this.hashCode());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_progress, container, false);
-        integers = new int[100];
-        for(int i=0;i<100;i++) {
-            integers[i] = i + 1;
-        }
-        indicatorBar = (ProgressBar) view.findViewById(R.id.indicator);
-        statusView = (TextView) view.findViewById(R.id.statusView);
-        Button btnFetch = (Button)view.findViewById(R.id.progressBtn);
-        btnFetch.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                new ProgressTask().execute();
+        View view = inflater.inflate(R.layout.fragment_stat, container, false);
+        tv = view.findViewById(R.id.tv_stat);
+        mt = new MyTask();
+        view.findViewById(R.id.btn_start).setOnClickListener(v -> {
+            if (mt.getStatus() != AsyncTask.Status.RUNNING) {
+                    if (mt.getStatus() == AsyncTask.Status.FINISHED) mt = new MyTask();
+                    mt.execute();
             }
+            else Log.d(LOG_TAG, "MyTask is running. Wait " + mt.getStatus());
         });
         return view;
     }
 
-    public class MyTask extends AsyncTask<String, Integer, Void> {
+    class MyTask extends AsyncTask<String, Integer, Void> {
+
         @Override
-        protected Void doInBackground(String... str) {
+        protected Void doInBackground(String... params) {
             try {
                 for (int i = 1; i <= 10; i++) {
                     TimeUnit.SECONDS.sleep(1);
-                    publishProgress();
-                    Log.d(LOG_TAG, "i = " + i +
-                            ", MyTask: " + this.hashCode() +
-                            ", MainActivity: " + MainActivity.this.hashCode());
+                    Log.d(LOG_TAG, "i = " + i
+                            + ", doInBackground MyTask: " + this.hashCode()
+                            + ", MainActivity: " + getContext().hashCode()
+                    );
+                    publishProgress(i);
                 }
+
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+
             return null;
         }
 
         @Override
-        protected void onProgressUpdate(Integer... result) {
-            super.onProgressUpdate(result);
-            tvInfo.setText("i = " + result);
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            tv.setText("i = " + values[0]);
         }
     }
 }

@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_stat"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.less_91_asynctask_rotate_screen.FragmentStat">
+    android:orientation="vertical"
+    tools:context="com.example.less_91_asynctask_rotate_screen.MainActivity">
 
-    <!-- TODO: Update blank fragment layout -->
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start"/>
+
     <TextView
+        android:id="@+id/tv_stat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:text="" />
 
-</FrameLayout>
+</LinearLayout>
