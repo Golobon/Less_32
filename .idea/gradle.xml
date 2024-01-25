@@ -28,13 +28,13 @@
             <option value="$PROJECT_DIR$/less_47_SimpleAdapter" />
             <option value="$PROJECT_DIR$/less_48_SimpleAdapter" />
             <option value="$PROJECT_DIR$/less_50_SimpleAdapter_ViewBinder" />
-            <option value="$PROJECT_DIR$/less_51_SimpleAdapter" />
-            <option value="$PROJECT_DIR$/less_52_SimpleCursorAdapter" />
-            <option value="$PROJECT_DIR$/less_53_SimpleCursorTreeAdapter" />
-            <option value="$PROJECT_DIR$/less_54_ListView_CustonAdapter" />
-            <option value="$PROJECT_DIR$/less_55_Header_Footer_HeaderViewListAdapter" />
-            <option value="$PROJECT_DIR$/less_56_Spinner" />
-            <option value="$PROJECT_DIR$/less_57_GridView" />
+            <option value="$PROJECT_DIR$/less_51_simpleadapter" />
+            <option value="$PROJECT_DIR$/less_52_simplecursoradapter" />
+            <option value="$PROJECT_DIR$/less_53_simplecursortreeadapter" />
+            <option value="$PROJECT_DIR$/less_54_listview_customadapter" />
+            <option value="$PROJECT_DIR$/less_55_header_footer_headerviewlistadapter" />
+            <option value="$PROJECT_DIR$/less_56_spinner" />
+            <option value="$PROJECT_DIR$/less_57_gridview" />
             <option value="$PROJECT_DIR$/less_58_timepickerdialog" />
             <option value="$PROJECT_DIR$/less_59_datepickerdialog" />
             <option value="$PROJECT_DIR$/less_60_alertdialog" />
@@ -69,6 +69,7 @@
             <option value="$PROJECT_DIR$/less_89_asynctask_cancel" />
             <option value="$PROJECT_DIR$/less_90_asynctask_status" />
             <option value="$PROJECT_DIR$/less_91_asynctask_rotate_screen" />
+            <option value="$PROJECT_DIR$/less_92_service" />
           </set>
         </option>
       </GradleProjectSettings>
