@@ -19,7 +19,7 @@ public class MyService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.d(LOG_TAG, "MyService onCreate");
-        es = Executors.newFixedThreadPool(1);
+        es = Executors.newFixedThreadPool(3);
         someRes = new Object();
     }
     @Override

@@ -16,14 +16,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         findViewById(R.id.btn_start).setOnClickListener(v -> {
             startService(new Intent(this, MyService.class)
                     .putExtra("time", 7));
-
             startService(new Intent(this, MyService.class)
                     .putExtra("time", 2));
-
             startService(new Intent(this, MyService.class)
                     .putExtra("time", 4));
         });
