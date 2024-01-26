@@ -68,8 +68,11 @@ public class MyService extends Service {
         }
 
         private void stop() {
-            Log.d(LOG_TAG, "MyRun " + startId + " end, stopSelf(" + startId + ")");
-            stopSelf(startId);
+//            Log.d(LOG_TAG, "MyRun " + startId + " end, stopSelfResult(" + startId + ")");
+//            stopSelf(startId);
+            Log.d(LOG_TAG, "MyRun " + startId +
+                    " end, stopSelfResult(" + startId + ") = " +
+                    stopSelfResult(startId));
         }
     }
 }
