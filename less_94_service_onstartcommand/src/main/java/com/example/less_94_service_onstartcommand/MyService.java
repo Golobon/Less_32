@@ -1,4 +1,4 @@
-package serverkiller;
+package com.example.less_94_service_onstartcommand;
 
 import android.app.Service;
 import android.content.Intent;
