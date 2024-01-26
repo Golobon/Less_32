@@ -1,4 +1,4 @@
-package com.example.less_94_serverkiller;
+package serverkiller;
 
 import android.app.Service;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+
 import java.util.concurrent.TimeUnit;
 
 public class MyService extends Service {
