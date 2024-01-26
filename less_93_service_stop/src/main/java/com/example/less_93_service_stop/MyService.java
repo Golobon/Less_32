@@ -8,28 +8,33 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class MyService extends Service {
     final String LOG_TAG = "myLogs";
-    static String SERVICE_ACTION = "com.service.my";
     ExecutorService es;
     Object someRes;
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(LOG_TAG, "onCreate");
-    }
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(LOG_TAG, "onStartCommand");
-        someTask();
-        return super.onStartCommand(intent, flags, startId);
+        Log.d(LOG_TAG, "MyService onCreate");
+        es = Executors.newFixedThreadPool(1);
+        someRes = new Object();
     }
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.d(LOG_TAG, "onDestroy");
+        Log.d(LOG_TAG, "MyService onDestroy");
+        someRes = null;
+    }
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d(LOG_TAG, "MyService onStartCommand");
+        int time = intent.getIntExtra("time", 1);
+        MyRun mr = new MyRun(time, startId);
+        es.execute(mr);
+        return super.onStartCommand(intent, flags, startId);
     }
     @Nullable
     @Override
@@ -37,18 +42,34 @@ public class MyService extends Service {
         Log.d(LOG_TAG, "onBind");
         return null;
     }
-    void someTask() {
-        new Thread(() -> {
-            for (int i = 1; i<=5; i++) {
-                Log.d(LOG_TAG, "i = " + i);
-                try {
-                    TimeUnit.SECONDS.sleep(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                stopSelf();
-            }
-        }).start();
+    class MyRun implements Runnable {
+        int time;
+        int startId;
 
+        public MyRun(int time, int startId) {
+            this.time = time;
+            this.startId = startId;
+            Log.d(LOG_TAG, "MyRun " + startId + " create");
+        }
+        @Override
+        public void run() {
+            Log.d(LOG_TAG, "MyRun " + startId + " start, time " + time);
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            try {
+                Log.d(LOG_TAG, "MyRun " + startId + " someRes = " + someRes.getClass());
+            } catch (NullPointerException e) {
+                Log.d(LOG_TAG, "MyRun " + startId + " error, nul pointer");
+            }
+            stop();
+        }
+
+        private void stop() {
+            Log.d(LOG_TAG, "MyRun " + startId + " end, stopSelf(" + startId + ")");
+            stopSelf(startId);
+        }
     }
 }

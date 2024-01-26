@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import java.util.concurrent.ExecutorService;
 
@@ -16,11 +17,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        findViewById(R.id.btn_start).setOnClickListener(v ->
-                startService(new Intent(
-                        MainActivity.this, MyService.class)));
-        findViewById(R.id.btn_stop).setOnClickListener(v ->
-                stopService(new Intent(
-                        MainActivity.this, MyService.class)));
+        findViewById(R.id.btn_start).setOnClickListener(v -> {
+            startService(new Intent(this, MyService.class)
+                    .putExtra("time", 7));
+
+            startService(new Intent(this, MyService.class)
+                    .putExtra("time", 2));
+
+            startService(new Intent(this, MyService.class)
+                    .putExtra("time", 4));
+        });
     }
 }
