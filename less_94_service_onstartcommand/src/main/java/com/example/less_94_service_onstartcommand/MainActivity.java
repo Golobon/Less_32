@@ -1,4 +1,4 @@
-package com.example.less_93_service_stop;
+package com.example.less_94_service_onstartcommand;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,12 +13,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         findViewById(R.id.btn_start).setOnClickListener(v -> {
-            startService(new Intent(this, MyService.class)
-                    .putExtra("time", 7));
-            startService(new Intent(this, MyService.class)
-                    .putExtra("time", 2));
-            startService(new Intent(this, MyService.class)
-                    .putExtra("time", 4));
+            startService(new Intent("com.example.less_94_serverkiller.MyService").putExtra("name", "value"));
         });
     }
 }
