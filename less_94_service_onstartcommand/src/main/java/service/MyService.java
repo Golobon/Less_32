@@ -1,4 +1,4 @@
-package com.example.less_94_service_onstartcommand;
+package service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -23,13 +23,15 @@ public class MyService extends Service {
     }
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d(LOG_TAG, "MyService onStartCommand");
+        Log.d(LOG_TAG, "MyService onStartCommand, name = " +
+                intent.getStringExtra("name"));
         readFlags(flags);
         MyRun mr = new MyRun(startId);
         new Thread(mr).start();
-        return START_NOT_STICKY;
+        return START_REDELIVER_INTENT;
     }
     private void readFlags(int flags) {
+        Log.d(LOG_TAG, "MyService readFlags");
         if ((flags & START_FLAG_REDELIVERY) == START_FLAG_REDELIVERY) {
             Log.d(LOG_TAG, "START_FLAG_REDELIVERY");
         }
@@ -53,7 +55,10 @@ public class MyService extends Service {
         public void run() {
             Log.d(LOG_TAG, "MyRun " + startId + " start");
             try {
-                TimeUnit.SECONDS.sleep(15);
+                for (int i = 0; i < 10; i++) {
+                    TimeUnit.SECONDS.sleep(10);
+                    Log.d(LOG_TAG, "BOOOOO");
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

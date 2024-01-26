@@ -9,7 +9,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Less_32">
 
-        <service android:name="com.example.less_94_service_onstartcommand.MyService"
+        <service android:name="service.MyService"
+            android:process=":newproc"
             android:exported="true"/>
 
         <activity
