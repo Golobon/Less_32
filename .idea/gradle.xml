@@ -25,9 +25,9 @@
             <option value="$PROJECT_DIR$/less_43_ListView_oneManyChoice" />
             <option value="$PROJECT_DIR$/less_44_ListView" />
             <option value="$PROJECT_DIR$/less_45_ExpandableListView" />
-            <option value="$PROJECT_DIR$/less_46_SimpleExpandableListAdapter" />
-            <option value="$PROJECT_DIR$/less_47_SimpleAdapter" />
-            <option value="$PROJECT_DIR$/less_48_SimpleAdapter" />
+            <option value="$PROJECT_DIR$/less_46_simpleexpandablelistadapter" />
+            <option value="$PROJECT_DIR$/less_47_simpleadapter" />
+            <option value="$PROJECT_DIR$/less_48_simpleadapter" />
             <option value="$PROJECT_DIR$/less_50_simpleadapter_viewbinder" />
             <option value="$PROJECT_DIR$/less_51_simpleadapter" />
             <option value="$PROJECT_DIR$/less_52_simplecursoradapter" />
