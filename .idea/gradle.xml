@@ -72,6 +72,7 @@
             <option value="$PROJECT_DIR$/less_92_service" />
             <option value="$PROJECT_DIR$/less_93_service_stop" />
             <option value="$PROJECT_DIR$/less_94_service_onstartcommand" />
+            <option value="$PROJECT_DIR$/less_95_service_pendingintent" />
           </set>
         </option>
       </GradleProjectSettings>
