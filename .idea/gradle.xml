@@ -12,6 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/less_30_onactivityresult" />
             <option value="$PROJECT_DIR$/less_33_Preferences" />
             <option value="$PROJECT_DIR$/less_34_SQL" />
             <option value="$PROJECT_DIR$/less_36_SQL_Query" />
