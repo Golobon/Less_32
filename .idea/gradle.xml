@@ -75,6 +75,7 @@
             <option value="$PROJECT_DIR$/less_94_service_onstartcommand" />
             <option value="$PROJECT_DIR$/less_95_service_pendingintent" />
             <option value="$PROJECT_DIR$/less_96_service_broadcastreceiver" />
+            <option value="$PROJECT_DIR$/less_97_service_serviceconnection" />
           </set>
         </option>
       </GradleProjectSettings>
