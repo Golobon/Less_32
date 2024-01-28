@@ -1,4 +1,4 @@
-package com.example.less_97_service_serviceconnection;
+package com.example.less_98_service_binding_datachange;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.TextView;
 
 import service.MyService;
 
@@ -16,17 +17,21 @@ public class MainActivity extends AppCompatActivity {
     boolean bound = false;
     ServiceConnection sConn;
     Intent intent;
+    MyService myService;
+    TextView tvInterval;
+    long interval;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        tvInterval = findViewById(R.id.tv_interval);
         intent = new Intent(this, MyService.class);
-
         sConn = new ServiceConnection() {
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
                 Log.d(LOG_TAG, "MainActivity onServiceConnected");
+                myService = ((MyService.MyBinder)service).getService();
                 bound = true;
             }
 
@@ -40,26 +45,28 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_start).setOnClickListener(v ->
                 startService(intent));
 
-        findViewById(R.id.btn_stop).setOnClickListener(v ->
-                stopService(intent));
+        findViewById(R.id.btn_up).setOnClickListener(v -> {
+            unbindService(sConn);
+            interval = myService.upInterval(500);
+            tvInterval.setText("interval = " + interval);
+        });
 
-//        findViewById(R.id.btn_bind).setOnClickListener(v ->
-//                bindService(intent, sConn, BIND_AUTO_CREATE));
-
-        findViewById(R.id.btn_bind).setOnClickListener(v ->
-                bindService(intent, sConn, 0));
-
-        findViewById(R.id.btn_unbind).setOnClickListener(v ->
-                unBind());
-    }
-    public void unBind() {
-        if (!bound) return;
-        unbindService(sConn);
-        bound = false;
+        findViewById(R.id.btn_down).setOnClickListener(v -> {
+            unbindService(sConn);
+            interval = myService.downInterval(500);
+            tvInterval.setText("interval = " + interval);
+        });
     }
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unBind();
+    protected void onStart() {
+        super.onStart();
+        bindService(intent, sConn, 0);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if (!bound) return;
+        bound = false;
     }
 }
