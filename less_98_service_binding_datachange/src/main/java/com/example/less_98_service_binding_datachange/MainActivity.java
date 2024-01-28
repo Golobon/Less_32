@@ -42,17 +42,16 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        findViewById(R.id.btn_start).setOnClickListener(v ->
-                startService(intent));
+        findViewById(R.id.btn_start).setOnClickListener(v -> startService(intent));
 
         findViewById(R.id.btn_up).setOnClickListener(v -> {
-            unbindService(sConn);
+            if (!bound) return;
             interval = myService.upInterval(500);
             tvInterval.setText("interval = " + interval);
         });
 
         findViewById(R.id.btn_down).setOnClickListener(v -> {
-            unbindService(sConn);
+            if (!bound) return;
             interval = myService.downInterval(500);
             tvInterval.setText("interval = " + interval);
         });
@@ -67,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         if (!bound) return;
+        unbindService(sConn);
         bound = false;
     }
 }
