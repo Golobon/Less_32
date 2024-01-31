@@ -9,6 +9,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,10 +17,13 @@ import service.MyService;
 
 public class MainActivity extends AppCompatActivity {
     public final static String FILE_NAME = "filename";
+    final String LOG_TAG = "myLogs";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.d(LOG_TAG, String.valueOf(this.hashCode()));
 
         TextView tv = findViewById(R.id.tv);
 
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         }
         findViewById(R.id.btn_start).setOnClickListener(v -> {
             startService(new Intent(MainActivity.this, MyService.class));
+            Log.d(LOG_TAG, String.valueOf(this.hashCode()));
 
         });
         findViewById(R.id.btn_stop).setOnClickListener(v -> {

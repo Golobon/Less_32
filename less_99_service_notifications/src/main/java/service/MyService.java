@@ -1,13 +1,15 @@
 package service;
 
-import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.IBinder;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -24,11 +26,12 @@ public class MyService extends Service {
     final String LOG_TAG = "myLogs";
     ExecutorService es;
     Context context;
+    private int counter = 101;
     @Override
     public void onCreate() {
         super.onCreate();
         Log.d(LOG_TAG, "MyService onCreate");
-        es = Executors.newFixedThreadPool(2);
+        es = Executors.newFixedThreadPool(5);
         context = getBaseContext();
     }
     ;    @Override
@@ -53,12 +56,12 @@ public class MyService extends Service {
         @Override
         public void run() {
             Log.d(LOG_TAG, "MyRun");
+            Log.d(LOG_TAG, String.valueOf(this.hashCode()));
+            Log.d(LOG_TAG, String.valueOf(MyService.this.hashCode()));
             try {
                 TimeUnit.SECONDS.sleep(5);
-                sendIntent();
+                //sendIntent();
                 showNityficashion();
-
-
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -82,23 +85,38 @@ public class MyService extends Service {
         }
 
         private void showNityficashion() {
+            Intent intent = new Intent(MyService.this, MainActivity.class);
+            intent.putExtra(MainActivity.FILE_NAME, "someFile ");
+            PendingIntent pIntent = PendingIntent.getActivity(
+                    MyService.this,
+                    0,
+                    intent ,
+                    PendingIntent.FLAG_IMMUTABLE);
+
             NotificationChannel channel = new NotificationChannel("NOTIFICATION_ID", "notification",
                     NotificationManager.IMPORTANCE_HIGH);
-            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
-            notificationManager.createNotificationChannel(channel);
+            NotificationManager notManag = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+            notManag.createNotificationChannel(channel);
             final String strChannel = "channel";
             NotificationCompat.Builder builder = new NotificationCompat.Builder(getBaseContext(), strChannel);
             builder
+                    .setDefaults(NotificationCompat.DEFAULT_VIBRATE)
                     .setContentTitle("Title")
-                    .setContentText("This is content text. This is content text. This is content text. This is content text. This is content text. This is content text. This is content text. This is content text. ")
+                    .setContentText("This is content text... ")
                     .setWhen(System.currentTimeMillis())
-                    .setSmallIcon(R.drawable.ic_12);
+                    .setSmallIcon(R.drawable.ic_12)
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                    .setContentIntent(pIntent)
+                    .setAutoCancel(true);
 
             builder.setChannelId("NOTIFICATION_ID");
 
-            notificationManager.notify(1, builder.build());
+            Vibrator v = (Vibrator) MyService.this.getSystemService(Context.VIBRATOR_SERVICE);
+            v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
 
+            notManag.notify(counter++, builder.build());
         }
     }
 }
