@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
@@ -21,42 +22,39 @@ import service.MyService;
 
 public class MainActivity extends AppCompatActivity {
     public final static String FILE_NAME = "filename";
-    private static final int NOTIFICATION_ID = 10;
+    private static int NOTIFICATION_ID = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.btn_start).setOnClickListener(v -> {
-            notification();
-        });
+        findViewById(R.id.btn_start).setOnClickListener(v -> notification());
 
         findViewById(R.id.btn_stop).setOnClickListener(v ->
                 stopService(new Intent(MainActivity.this, MyService.class)));
     }
 
     public void notification() {
-        NotificationChannel channel = new NotificationChannel("1", "notification",
+        NotificationChannel channel = new NotificationChannel(String.valueOf(NOTIFICATION_ID), "notification",
                 NotificationManager.IMPORTANCE_HIGH);
-        NotificationManager notificationManager = getSystemService(NotificationManager.class);
-
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         notificationManager.createNotificationChannel(channel);
-        final String SS = "channel";
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, SS)
-                .setSmallIcon(com.google.android.material.R.drawable.notification_bg);
-        builder.setContentInfo("content info")
-                .setContentTitle("This is content title")
-                .setContentText("This is content text")
+        final String strChannel = "channel" + NOTIFICATION_ID;
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, strChannel);
+                //.setSmallIcon(com.google.android.material.R.drawable.notification_bg);
+        builder
+                .setContentTitle("Title")
+                .setContentText("This is content text. This is content text. This is content text. This is content text. This is content text. This is content text. This is content text. This is content text. ")
                 .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.mipmap.ic_launcher)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher));
+                .setSmallIcon(R.mipmap.ic_launcher);
 
-        builder.setChannelId("1");
+        builder.setChannelId(String.valueOf(NOTIFICATION_ID));
 
 
         notificationManager.notify(1, builder.build());
+        NOTIFICATION_ID++;
 
     }
 

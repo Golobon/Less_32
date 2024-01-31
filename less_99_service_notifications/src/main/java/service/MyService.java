@@ -1,7 +1,9 @@
 package service;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +13,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
+import com.example.less_99_service_notifications.MainActivity;
 import com.example.less_99_service_notifications.R;
 
 import java.util.concurrent.ExecutorService;
@@ -53,20 +56,50 @@ public class MyService extends Service {
             Log.d(LOG_TAG, "MyRun");
             try {
                 TimeUnit.SECONDS.sleep(5);
-                builder = new NotificationCompat.Builder(context, "Boober")
-                                .setSmallIcon(R.drawable.ic_launcher_background)
-                                .setContentTitle("Title")
-                                .setContentText("Notification text");
+                sendIntent();
+                showNityficashion();
 
-                Notification notification = builder.build();
-
-                NotificationManager notificationManager =
-                        (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-                notificationManager.notify(1, notification);
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+
+        private void sendIntent() {
+            Intent intent = new Intent(MyService.this, MainActivity.class);
+            intent.putExtra(MainActivity.FILE_NAME, "someFile");
+            PendingIntent pIntent = PendingIntent.getActivity(
+                    MyService.this,
+                    0,
+                    intent ,
+                    PendingIntent.FLAG_IMMUTABLE);
+            try {
+                Log.d(LOG_TAG, "pIntent.send()");
+                pIntent.send();
+            } catch (PendingIntent.CanceledException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+
+        private void showNityficashion() {
+            NotificationChannel channel = new NotificationChannel("NOTIFICATION_ID", "notification",
+                    NotificationManager.IMPORTANCE_HIGH);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+            notificationManager.createNotificationChannel(channel);
+            final String strChannel = "channel";
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(getBaseContext(), strChannel);
+            builder
+                    .setContentTitle("Title")
+                    .setContentText("This is content text. This is content text. This is content text. This is content text. This is content text. This is content text. This is content text. This is content text. ")
+                    .setWhen(System.currentTimeMillis())
+                    .setSmallIcon(R.drawable.ic_12);
+
+            builder.setChannelId("NOTIFICATION_ID");
+
+            notificationManager.notify(1, builder.build());
+
         }
     }
 }
