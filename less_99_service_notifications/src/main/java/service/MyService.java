@@ -24,7 +24,6 @@ public class MyService extends Service {
     final String LOG_TAG = "myLogs";
     ExecutorService es;
     Context context;
-    NotificationCompat.Builder builder;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -67,7 +66,7 @@ public class MyService extends Service {
 
         private void sendIntent() {
             Intent intent = new Intent(MyService.this, MainActivity.class);
-            intent.putExtra(MainActivity.FILE_NAME, "someFile");
+            intent.putExtra(MainActivity.FILE_NAME, "someFile ");
             PendingIntent pIntent = PendingIntent.getActivity(
                     MyService.this,
                     0,

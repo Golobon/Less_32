@@ -28,9 +28,12 @@ public class MainActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(fileName)) {
             tv.setText(fileName);
         }
-        findViewById(R.id.btn_start).setOnClickListener(v ->
-                startService(new Intent(MainActivity.this, MyService.class)));
-        findViewById(R.id.btn_stop).setOnClickListener(v ->
-                stopService(new Intent(MainActivity.this, MyService.class)));
+        findViewById(R.id.btn_start).setOnClickListener(v -> {
+            startService(new Intent(MainActivity.this, MyService.class));
+
+        });
+        findViewById(R.id.btn_stop).setOnClickListener(v -> {
+            stopService(new Intent(MainActivity.this, MyService.class));
+        });
     }
 }
