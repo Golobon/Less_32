@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_insert).setOnClickListener(v -> {
             ContentValues cv = new ContentValues();
-            cv.put(CONTACT_NAME, "Name 4");
+            cv.put(CONTACT_NAME, "name 4");
             cv.put(CONTACT_EMAIL, "email 4");
             Uri newUri = getContentResolver().insert(CONTACT_URI, cv);
             Log.d(LOG_TAG, "insert, result Uri : " + newUri.toString());
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.btn_update).setOnClickListener(v -> {
             ContentValues cv = new ContentValues();
-            cv.put(CONTACT_NAME, "Name 5");
+            cv.put(CONTACT_NAME, "name 5");
             cv.put(CONTACT_EMAIL, "email 5");
             Uri uri = ContentUris.withAppendedId(CONTACT_URI, 2);
             int cnt = getContentResolver().update(uri, cv, null, null);

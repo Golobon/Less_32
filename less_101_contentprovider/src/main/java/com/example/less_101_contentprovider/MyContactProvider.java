@@ -181,7 +181,7 @@ public class MyContactProvider extends ContentProvider {
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(DB_CREATE);
             ContentValues cv = new ContentValues();
-            for (int i = 0; i <= 3; i++) {
+            for (int i = 1; i <= 3; i++) {
                 cv.put(CONTACT_NAME, "name " + i);
                 cv.put(CONTACT_EMAIL, "email " + i);
                 db.insert(CONTACT_TABLE, null, cv);
