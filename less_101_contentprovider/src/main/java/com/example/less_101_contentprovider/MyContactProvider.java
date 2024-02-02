@@ -36,8 +36,8 @@ public class MyContactProvider extends ContentProvider {
                     ");";
     public static final String AUTHORITY = "com.golobon.providers.AdressBook";
     public static final String CONTACT_PATH = "contacts";
-    public static final Uri CONTACT_CONTENT_URI = Uri.parse("content://"
-            + AUTHORITY + "/" + CONTACT_PATH);
+    public static final Uri CONTACT_CONTENT_URI = Uri.parse("content://" +
+            AUTHORITY + "/" + CONTACT_PATH);
     public static final String CONTACT_CONTENT_TYPE = "vnd.android.cursor.dir/vnd." +
             AUTHORITY + "." + CONTACT_PATH;
     public static final String CONTACT_CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd." +
