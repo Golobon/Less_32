@@ -5,6 +5,7 @@ import android.preference.PreferenceActivity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceFragmentCompat;
 
 import java.util.List;
 
@@ -22,6 +23,13 @@ public class MainActivity extends AppCompatActivity {
                     .beginTransaction()
                     .replace(android.R.id.content, new HeaderFragment())
                     .commit();
+        }
+    }
+
+    public static class HeaderFragment extends PreferenceFragmentCompat {
+        @Override
+        public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
+            setPreferencesFromResource(R.xml.pref_head, rootKey);
         }
     }
 }
