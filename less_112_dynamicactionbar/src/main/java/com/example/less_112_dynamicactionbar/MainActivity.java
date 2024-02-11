@@ -1,5 +1,6 @@
 package com.example.less_112_dynamicactionbar;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -39,8 +40,11 @@ public class MainActivity extends AppCompatActivity {
         chbAddDel.setOnClickListener(MainActivity.this::onClick);
         chbVisible.setOnClickListener(MainActivity.this::onClick);
 
-        Objects.requireNonNull(getSupportActionBar()).
-                setDisplayShowTitleEnabled(false);
+
+        ActionBar actBar = this.getSupportActionBar();
+        Objects.requireNonNull(actBar).setTitle("Boober");
+//        Objects.requireNonNull(getSupportActionBar()).
+//                setDisplayShowTitleEnabled(false);
 
     }
     private void onClick(View v) {
