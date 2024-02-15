@@ -8,27 +8,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Less_32">
+        <activity
+            android:name=".ConfigActivity"
+            android:exported="false">
+
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
+
+        </activity>
 
         <receiver
             android:name=".MyWidget"
+            android:exported="true"
             android:icon="@drawable/ic_launcher_foreground"
-            android:label="Boober"
-            android:exported="true">
-
+            android:label="Boober">
             <intent-filter>
-                <action
-                    android:name="android.appwidget.action.APPWIDGET_UPDATE">
-                </action>
-
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_metadata">
-            </meta-data>
-
+                android:resource="@xml/widget_metadata"></meta-data>
         </receiver>
-
     </application>
 
 </manifest>

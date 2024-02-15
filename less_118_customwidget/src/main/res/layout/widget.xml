@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    android:id="@+id/widget"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/layout_bg"
+    android:alpha="0.5"
     android:gravity="center">
 
     <TextView
@@ -16,5 +18,5 @@
         android:text="@string/widget_text"
         android:textColor="#F314430A"
         android:textSize="20sp"
-        android:textStyle="bold"></TextView>
+        android:textStyle="bold"/>
 </RelativeLayout>
