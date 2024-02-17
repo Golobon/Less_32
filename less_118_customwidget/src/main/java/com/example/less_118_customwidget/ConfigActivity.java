@@ -63,11 +63,14 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
         int selRGColorId = rg.getCheckedRadioButtonId();
         int color = Color.RED;
         if (selRGColorId == R.id.radio_red)
-            color = Color.parseColor("#80ff0000");
+            color = R.drawable.layout_bg_red;
+            //color = Color.parseColor("#80ff0000");
         if (selRGColorId == R.id.radio_green)
-            color = Color.parseColor("#8000ff00");
+            color = R.drawable.layout_bg_green;
+            //color = Color.parseColor("#8000ff00");
         if (selRGColorId == R.id.radio_blue)
-            color = Color.parseColor("#800000ff");
+            color = R.drawable.layout_bg;
+            //color = Color.parseColor("#800000ff");
 
         SharedPreferences sp = getSharedPreferences(WIDGET_PREF, MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();

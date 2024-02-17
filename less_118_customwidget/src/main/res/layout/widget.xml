@@ -5,18 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/layout_bg"
-    android:alpha="0.5"
     android:gravity="center">
 
     <TextView
         android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:fontFamily="cursive"
         android:gravity="center"
         android:text="@string/widget_text"
         android:textColor="#F314430A"
         android:textSize="20sp"
         android:textStyle="bold"/>
+
+    <ImageView
+        android:id="@+id/iv_widget"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/layout_bg"/>
 </RelativeLayout>

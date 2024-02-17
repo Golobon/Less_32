@@ -59,7 +59,7 @@ public class MyWidget extends AppWidgetProvider {
         RemoteViews widgetView = new RemoteViews(context.getPackageName(),
                 R.layout.widget);
         widgetView.setTextViewText(R.id.tv, widgetText);
-        widgetView.setInt(R.id.tv, "setBackgroundColor", widgetColor);
+        widgetView.setInt(R.id.iv_widget, "setImageResource", widgetColor);
 
         appWidgetManager.updateAppWidget(widgetID, widgetView);
     }
