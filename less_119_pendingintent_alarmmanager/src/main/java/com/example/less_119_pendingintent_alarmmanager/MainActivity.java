@@ -10,8 +10,11 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,16 +52,24 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (v.equals(btn1)) {
             //intent1 = createIntent("action 1", "extra 1"); //false
             intent1 = createIntent("action", "extra 1"); //true
-            pIntent1 = PendingIntent.getBroadcast(this, 0, intent1, PendingIntent.FLAG_IMMUTABLE);
+            Uri data1 = Uri.parse(intent1.toUri(Intent.URI_INTENT_SCHEME));
+            intent1.setData(data1);
+            pIntent1 = PendingIntent.getBroadcast(this, 1, intent1, 0);
+            Log.d(LOG_TAG, "pIntent1 created");
 
             //intent2 = createIntent("action 2", "extra 2"); //false
             intent2 = createIntent("action", "extra 2"); //true
-            pIntent2 = PendingIntent.getBroadcast(this, 0, intent2, PendingIntent.FLAG_IMMUTABLE);
-
+            Uri data2 = Uri.parse(intent2.toUri(Intent.URI_INTENT_SCHEME));
+            intent2.setData(data2);
+            pIntent2 = PendingIntent.getBroadcast(this, 2, intent2, 0);
             compare();
             sendNotif(1, pIntent1);
             sendNotif(2, pIntent2);
         } else if (v.equals(btn2)) {
+            intent2 = createIntent("action", "extra 2"); //true
+            pIntent2 = PendingIntent.getBroadcast(this, 0, intent2, PendingIntent.FLAG_NO_CREATE);
+            if (pIntent2 == null) Log.d(LOG_TAG, "pIntent2 is null");
+            else Log.d(LOG_TAG, "pIntent2 created");
         }
     }
 
@@ -78,28 +89,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         NotificationChannel channel = new NotificationChannel(String.valueOf(NOTIFICATION_ID), "notification",
                 NotificationManager.IMPORTANCE_HIGH);
         nm.createNotificationChannel(channel);
-        final String strChannel = "channel" + NOTIFICATION_ID;
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, strChannel);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, String.valueOf(NOTIFICATION_ID));
         builder
                 .setContentTitle("Title")
-                .setContentText("Noyif " + id)
+                .setContentText("Notif " + id)
                 .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.mipmap.ic_launcher).
-                setAutoCancel(true).
-                setContentIntent(pIntent);
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setAutoCancel(true)
+                .setContentIntent(pIntent);
 
         builder.setChannelId(String.valueOf(NOTIFICATION_ID));
 
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
         nm.notify(id, builder.build());
     }
 }

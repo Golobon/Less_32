@@ -60,7 +60,7 @@ public class MyService extends Service {
             Log.d(LOG_TAG, String.valueOf(MyService.this.hashCode()));
             try {
                 TimeUnit.SECONDS.sleep(5);
-                //sendIntent();
+                sendIntent();
                 showNityficashion();
             } catch (InterruptedException e) {
                 e.printStackTrace();

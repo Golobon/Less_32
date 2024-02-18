@@ -40,5 +40,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_stop).setOnClickListener(v -> {
             stopService(new Intent(MainActivity.this, MyService.class));
         });
+
+
     }
 }
