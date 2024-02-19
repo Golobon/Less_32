@@ -16,6 +16,7 @@ import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -50,26 +51,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v.equals(btn1)) {
-            //intent1 = createIntent("action 1", "extra 1"); //false
-            intent1 = createIntent("action", "extra 1"); //true
-            Uri data1 = Uri.parse(intent1.toUri(Intent.URI_INTENT_SCHEME));
-            intent1.setData(data1);
-            pIntent1 = PendingIntent.getBroadcast(this, 1, intent1, 0);
+            intent1 = createIntent("action 1", "extra 1"); //false
+            //intent1 = createIntent("action", "extra 1"); //true
+//            Uri data1 = Uri.parse(intent1.toUri(Intent.URI_INTENT_SCHEME)); //Устанавливаем, чтобы различать интенты
+//            intent1.setData(data1);
+            pIntent1 = PendingIntent.getBroadcast(this, 0, intent1, 0);
             Log.d(LOG_TAG, "pIntent1 created");
 
-            //intent2 = createIntent("action 2", "extra 2"); //false
-            intent2 = createIntent("action", "extra 2"); //true
-            Uri data2 = Uri.parse(intent2.toUri(Intent.URI_INTENT_SCHEME));
-            intent2.setData(data2);
-            pIntent2 = PendingIntent.getBroadcast(this, 2, intent2, 0);
-            compare();
-            sendNotif(1, pIntent1);
-            sendNotif(2, pIntent2);
+            intent2 = createIntent("action 2", "extra 2"); //false
+            //intent2 = createIntent("action", "extra 2"); //true
+//            Uri data2 = Uri.parse(intent2.toUri(Intent.URI_INTENT_SCHEME));
+//            intent2.setData(data2);
+            pIntent2 = PendingIntent.getBroadcast(this, 0, intent2, 0);
+
+            am.set(AlarmManager.RTC, System.currentTimeMillis() + 4000, pIntent1);
+
+            am.setRepeating(AlarmManager.ELAPSED_REALTIME,
+                    SystemClock.elapsedRealtime() + 3000, 5000, pIntent2);
+//            compare();
+//            sendNotif(1, pIntent1);
+//            sendNotif(2, pIntent2);
         } else if (v.equals(btn2)) {
-            intent2 = createIntent("action", "extra 2"); //true
-            pIntent2 = PendingIntent.getBroadcast(this, 0, intent2, PendingIntent.FLAG_NO_CREATE);
-            if (pIntent2 == null) Log.d(LOG_TAG, "pIntent2 is null");
-            else Log.d(LOG_TAG, "pIntent2 created");
+            am.cancel(pIntent2);
+//            intent2 = createIntent("action", "extra 2"); //true
+//            pIntent2 = PendingIntent.getBroadcast(this, 0, intent2, PendingIntent.FLAG_NO_CREATE);
+//            if (pIntent2 == null) Log.d(LOG_TAG, "pIntent2 is null");
+//            else Log.d(LOG_TAG, "pIntent2 created");
         }
     }
 
