@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn2.setOnClickListener(this);
     }
 
+    @SuppressLint("ScheduleExactAlarm")
     @Override
     public void onClick(View v) {
         if (v.equals(btn1)) {
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //            intent2.setData(data2);
             pIntent2 = PendingIntent.getBroadcast(this, 0, intent2, 0);
 
-            am.set(AlarmManager.RTC, System.currentTimeMillis() + 4000, pIntent1);
+            am.setExact(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 4000, pIntent1);
 
             am.setRepeating(AlarmManager.ELAPSED_REALTIME,
                     SystemClock.elapsedRealtime() + 3000, 5000, pIntent2);
