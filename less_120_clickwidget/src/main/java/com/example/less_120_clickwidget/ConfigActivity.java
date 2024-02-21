@@ -24,8 +24,6 @@ public class ConfigActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         if (extras != null) {
