@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="16dp"
+    tools:context=".MainActivity">
+    <SurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+    </SurfaceView>
+    <Button
+        android:id="@+id/btnTakePicture"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/surfaceView"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/take_picture"/>
+    <Button
+        android:id="@+id/btnStartRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/btnTakePicture"
+        android:layout_toEndOf="@id/btnTakePicture"
+        android:layout_marginEnd="10dp"
+        android:text="@string/start_record"/>
+
+    <Button
+        android:id="@+id/btnStopRecord"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/btnStartRecord"
+        android:layout_toEndOf="@id/btnStartRecord"
+        android:text="@string/stop_record" />
+</RelativeLayout>
