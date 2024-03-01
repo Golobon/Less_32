@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
@@ -57,14 +58,30 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nbtnStopRec = findViewById(R.id.btnStopRecord);
         nbtnStopRec.setOnClickListener(this);
 
-        File pictures =  getBaseContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File pictures = new File(getPhotoDirectory(getBaseContext()));
+                //getBaseContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 //        Environment.getExternalStoragePublicDirectory(
 //                        Environment.DIRECTORY_PICTURES
 //                );
         photoFile = new File(pictures, "myPhoto.jpeg");
         Log.d("mylog", "photoFile: " + photoFile.getAbsolutePath());
+        if (photoFile.exists()) {
+            if (!photoFile.isDirectory()){
+                MainActivity.this.finish();
+            }
+        } else {
+            Log.d("mylog", "mkdir: " + photoFile.mkdir());
+        }
         videoFile = new File(pictures, "myVideo.3gp");
         Log.d("mylog", "videoFile: " + videoFile.getAbsolutePath());
+
+        if (videoFile.exists()) {
+            if (!videoFile.isDirectory()){
+                MainActivity.this.finish();
+            }
+        } else {
+            Log.d("mylog", "mkdir: " + videoFile.mkdir());
+        }
 
         surfaceView = findViewById(R.id.surfaceView);
         SurfaceHolder holder = surfaceView.getHolder();
@@ -88,6 +105,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
         });
+    }
+    public static String getPhotoDirectory(Context context)
+    {
+        //return Environment.getExternalStorageDirectory().getPath() +"/cbo-up";
+        return context.getExternalFilesDir(null).getPath() +"/cbo-up";
     }
     @Override
     protected void onResume() {
