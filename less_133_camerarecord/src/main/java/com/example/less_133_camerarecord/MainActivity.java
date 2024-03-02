@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         new MediaScannerConnection.OnScanCompletedListener() {
                             @Override
                             public void onScanCompleted(String path, Uri uri) {
-                                Log.i("myLogs ExternalStorage", "Scanned " + path + ":");
+                                Log.i("myLogs ExternalStorage ", "Scanned " + path + ":");
                                 Log.i("myLogs ExternalStorage", "-> uri=" + uri);
                             }
                         });
