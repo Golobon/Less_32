@@ -11,22 +11,22 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.media.CamcorderProfile;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.media.MediaRecorder;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Optional;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     SurfaceView surfaceView;
@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     File photoFile;
     File videoFile;
     Button btnTakePicture, btnStartRec, nbtnStopRec;
+    TextView tvText;
+    File pictures;
 
     @RequiresApi(api = Build.VERSION_CODES.R)
     @Override
@@ -47,8 +49,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,
                     new String[]{android.Manifest.permission.CAMERA,
-                            Manifest.permission.MANAGE_EXTERNAL_STORAGE,
-                            Manifest.permission.RECORD_AUDIO}, 1);
+                            Manifest.permission.READ_EXTERNAL_STORAGE,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                            Manifest.permission.RECORD_AUDIO},
+                    PackageManager.PERMISSION_GRANTED);
         }
 
         btnTakePicture = findViewById(R.id.btnTakePicture);
@@ -58,30 +62,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nbtnStopRec = findViewById(R.id.btnStopRecord);
         nbtnStopRec.setOnClickListener(this);
 
-        File pictures = new File(getPhotoDirectory(getBaseContext()));
-                //getBaseContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        tvText = findViewById(R.id.tv_text);
+
+        pictures = new File(getPhotoDirectory(getBaseContext()));
+
+        if (pictures.exists()) {
+            Log.d("mylog", "pictures.exists(): " + pictures.exists());
+            if (!pictures.isDirectory()){
+                this.finish();
+            }
+        } else {
+            Log.d("mylog", "mkdir: " + pictures.mkdir());
+        }
+//getBaseContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
 //        Environment.getExternalStoragePublicDirectory(
 //                        Environment.DIRECTORY_PICTURES
 //                );
-        photoFile = new File(pictures, "myPhoto.jpeg");
-        Log.d("mylog", "photoFile: " + photoFile.getAbsolutePath());
-        if (photoFile.exists()) {
-            if (!photoFile.isDirectory()){
-                MainActivity.this.finish();
-            }
-        } else {
-            Log.d("mylog", "mkdir: " + photoFile.mkdir());
-        }
-        videoFile = new File(pictures, "myVideo.3gp");
-        Log.d("mylog", "videoFile: " + videoFile.getAbsolutePath());
-
-        if (videoFile.exists()) {
-            if (!videoFile.isDirectory()){
-                MainActivity.this.finish();
-            }
-        } else {
-            Log.d("mylog", "mkdir: " + videoFile.mkdir());
-        }
 
         surfaceView = findViewById(R.id.surfaceView);
         SurfaceHolder holder = surfaceView.getHolder();
@@ -106,10 +102,57 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         });
     }
-    public static String getPhotoDirectory(Context context)
+
+    private File getPhotoVideoFileName(int mediaType) {
+        File path = null;
+        if (mediaType == 1)
+            path = new File(pictures,
+                System.currentTimeMillis() +
+                        "_myPhoto.jpeg");
+
+//        Log.d("mylog", "photoFile: " + photoFile.getAbsolutePath());
+//
+//        Log.d("mylog", "isDirectory: " + photoFile.isDirectory());
+//        Log.d("mylog", "isFile: " + photoFile.isFile());
+//        Log.d("mylog", "photoFile.exists(): " + photoFile.exists());
+//        Log.d("mylog", "photoFile.length(): " + photoFile.length());
+
+        if (mediaType == 2) path = new File(pictures, System.currentTimeMillis() + " myVideo.3gp");
+//        Log.d("mylog", "videoFile: " + videoFile.getAbsolutePath());
+//
+//        Log.d("mylog", "isDirectory: " + videoFile.isDirectory());
+//        Log.d("mylog", "isFile: " + videoFile.isFile());
+//        Log.d("mylog", "videoFile.exists(): " + videoFile.exists());
+//        Log.d("mylog", "videoFile.length(): " + videoFile.length());
+        return path;
+    }
+
+    public String getPhotoDirectory(Context context)
     {
+//        Log.d("mylog", "context.getExternalFilesDir(Environment.DIRECTORY_DCIM).getPath(): " +
+//            context.getExternalFilesDir(Environment.DIRECTORY_DCIM).getPath());
+//        Log.d("mylog", "Environment.getExternalStorageDirectory().getPath(): " +
+//                Environment.getExternalStorageDirectory().getPath());
+//        Log.d("mylog", "context.getFilesDir(): " +
+//                context.getFilesDir());
+//        Log.d("mylog", "getBaseContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES): " +
+//                context.getExternalFilesDir(Environment.DIRECTORY_PICTURES));
+//        for (File f: context.getExternalMediaDirs()) {
+//            Log.d("mylog", "getExternalMediaDirs: " +
+//                    f.getPath() + " length: " + context.getExternalMediaDirs().length);
+//
+//        }
+
+//        Log.d("mylog", "Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES): " +
+//                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM));
+
         //return Environment.getExternalStorageDirectory().getPath() +"/cbo-up";
-        return context.getExternalFilesDir(null).getPath() +"/cbo-up";
+        return context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)+"";
+        //return context.getFilesDir() + "/cbo-up";
+        //return getBaseContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)+"";
+//        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) +
+//                File.separator + "Camera"; //Good
+        //return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "";
     }
     @Override
     protected void onResume() {
@@ -127,6 +170,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         camera.takePicture(null, null, new Camera.PictureCallback() {
             @Override
             public void onPictureTaken(byte[] data, Camera camera) {
+                photoFile = getPhotoVideoFileName(1);
                 try {
                     FileOutputStream fos = new FileOutputStream(photoFile);
                     fos.write(data);
@@ -135,6 +179,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     e.printStackTrace();
                 }
                 camera.startPreview();
+//                sendBroadcast(new Intent(
+//                        Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
+//                        Uri.parse(
+//                              //  "file://" +
+//                                        photoFile.getAbsolutePath())));
+
+//                MediaScannerConnection.scanFile(getBaseContext(),
+//                        new String[]{"file://" +photoFile.getAbsolutePath()},
+//                        null, null);
+
+                MediaScannerConnection.scanFile(getBaseContext(),
+                        new String[] { photoFile.toString() }, null,
+                        new MediaScannerConnection.OnScanCompletedListener() {
+                            @Override
+                            public void onScanCompleted(String path, Uri uri) {
+                                Log.i("myLogs ExternalStorage", "Scanned " + path + ":");
+                                Log.i("myLogs ExternalStorage", "-> uri=" + uri);
+                            }
+                        });
+
+                Log.d("myLogs", "photoFile: " + photoFile);
             }
         });
     }
@@ -149,9 +214,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (mediaRecorder != null) {
             mediaRecorder.stop();
             releaseMediaRecorder();
+//            sendBroadcast(new Intent(
+//                    Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
+//                    Uri.parse(
+//                            "file://" + videoFile.getAbsolutePath())));
+            MediaScannerConnection.scanFile(getBaseContext(),
+                    new String[]{videoFile.toString()},
+                    null, null);
+            Log.d("myLogs", "videoFile: " + videoFile);
         }
     }
     private boolean prepareVideoRecorder() {
+        videoFile = getPhotoVideoFileName(2);
+
         camera.stopPreview();
         camera.unlock();
 
