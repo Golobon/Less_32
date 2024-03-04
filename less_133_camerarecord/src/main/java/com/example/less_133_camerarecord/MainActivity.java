@@ -16,6 +16,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -146,13 +147,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //        Log.d("mylog", "Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES): " +
 //                Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM));
 
-        //return Environment.getExternalStorageDirectory().getPath() +"/cbo-up";
-        return context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)+"";
+        //return Environment.getExternalStorageDirectory()+"/cbo-up"; //Good
+        //return context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)+"";
         //return context.getFilesDir() + "/cbo-up";
         //return getBaseContext().getExternalFilesDir(Environment.DIRECTORY_PICTURES)+"";
-//        return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) +
+        //return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) +"";
 //                File.separator + "Camera"; //Good
         //return Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES) + "";
+        return MediaStore.Images.Media.DATE_ADDED + "";
     }
     @Override
     protected void onResume() {
@@ -171,9 +173,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onPictureTaken(byte[] data, Camera camera) {
                 photoFile = getPhotoVideoFileName(1);
+                Log.d("myLogs", "photoFile exists: " + photoFile.exists());
                 try {
                     FileOutputStream fos = new FileOutputStream(photoFile);
                     fos.write(data);
+                    fos.flush();
+                    fos.getFD().sync();
                     fos.close();
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -189,17 +194,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 //                        new String[]{"file://" +photoFile.getAbsolutePath()},
 //                        null, null);
 
-                MediaScannerConnection.scanFile(getBaseContext(),
-                        new String[] { photoFile.toString() }, null,
+                MediaScannerConnection.scanFile(MainActivity.this,
+                        new String[] { photoFile.getAbsolutePath() },
+                        new String[] {"image/jpeg"},
                         new MediaScannerConnection.OnScanCompletedListener() {
                             @Override
                             public void onScanCompleted(String path, Uri uri) {
                                 Log.i("myLogs ExternalStorage ", "Scanned " + path + ":");
-                                Log.i("myLogs ExternalStorage", "-> uri=" + uri);
+                                Log.i("myLogs ExternalStorage ", "-> uri = " + uri);
                             }
                         });
 
                 Log.d("myLogs", "photoFile: " + photoFile);
+                Log.d("myLogs", "photoFile exist2: " + photoFile.exists());
             }
         });
     }
