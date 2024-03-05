@@ -109,10 +109,11 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
 
                 Uri uriSavedImage;
                 ContentResolver resolver = getContentResolver();
+                String pathName = "Boo";
                 String imageFileName = "image_" + System.currentTimeMillis() + ".jpeg";
                 ContentValues valuesImages;
                 valuesImages = new ContentValues();
-                valuesImages.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES);
+                valuesImages.put(MediaStore.Images.Media.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + File.separator + pathName);
                 valuesImages.put(MediaStore.Images.Media.TITLE, imageFileName);
                 valuesImages.put(MediaStore.Images.Media.DISPLAY_NAME, imageFileName);
                 valuesImages.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg");
