@@ -134,7 +134,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                 ParcelFileDescriptor pfd;
                 FileOutputStream out;
                 try {
-                    pfd = getContentResolver().openFileDescriptor(uriSavedImage, "w");
+                    pfd = resolver.openFileDescriptor(uriSavedImage, "w");
 
                     out = new FileOutputStream(pfd.getFileDescriptor());
 
